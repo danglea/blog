@@ -162,7 +162,37 @@ public class ParseJwtTest {
 
 综上所述，自己可以编写一个工具类。
 
-###### （3）使用拦截器方式实现**token**鉴权 
+###### （3）用户登录分发tocken
+
+```java
+@Autowired private JwtUtil jwtUtil;
+/**
+* 用户登陆
+* @param loginname 
+* @param password 
+* @return */ 
+@RequestMapping(value="/login",method=RequestMethod.POST) 
+public Result login(@RequestBody Map<String,String> loginMap){
+    Admin admin = adminService.findByLoginnameAndPassword(loginMap.get("loginname"), loginMap.get("password")); 
+    if(admin!=null){ 
+        //生成token 
+        String token = jwtUtil.createJWT(admin.getId(), admin.getLoginname(), "admin"); Map map=new HashMap();
+        map.put("token",token);
+        map.put("name",admin.getLoginname());
+        //登陆名
+        return new Result(true,StatusCode.OK,"登陆成功",map);
+    }
+    else{
+        return new Result(false,StatusCode.LOGINERROR,"用户名或密码错 误");
+    } 
+}
+```
+
+JwtUtil是token的生成和解析的工具类。当用户登陆的时候为每一个用户提供一个tocken有效时间是一个小时，
+
+用于权限访问。
+
+###### （4）使用拦截器方式实现**token**鉴权 
 
 创建拦截器JWtFilter
 

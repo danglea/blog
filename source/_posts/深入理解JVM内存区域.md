@@ -30,7 +30,7 @@ tags: ['性能优化','高并发高可用']
 4. java堆
 5. 方法区
 
-![](http://pztpuk0kp.bkt.clouddn.com/jvm1.png)
+![](http://dsvip1.vip/jvm1.png)
 
 ###### （2）线程私有-程序计数器
 
@@ -53,7 +53,7 @@ tags: ['性能优化','高并发高可用']
 
 ***返回地址：*** 当一个方法开始执行后,只有两种方式可以退出，一种是遇到方法返回的字节码指令；一种是遇见异常，并且这个异常没有在方法体内得到处理。  方法退出的过程实际上就等同于把当前栈帧出栈,因此退出时可能执行的操作有:恢复上层方法的局部变量表和操作数栈,把返回值(如果有的话)压入调用者栈帧的操作数栈中,调整PC计数器的值以指向方法调用指令后面的一条指令等。 
 
-![](http://pztpuk0kp.bkt.clouddn.com/jvm4.jpg)
+![](http://dsvip1.vip/jvm4.jpg)
 
 ###### 线程私有-本地方法栈
 
@@ -65,12 +65,12 @@ tags: ['性能优化','高并发高可用']
  符号引用包括：1.类的全限定名，2.字段名和属性，3.方法名和属性。 
 
 
-![](http://pztpuk0kp.bkt.clouddn.com/jvm2.png)
+![](http://dsvip1.vip/jvm2.png)
 
 在JDK1.7之前运行时常量池包括字符串常量池存放在方法区, 此时hotspot虚拟机对方法区的实现为永久代
 在JDK1.7 运行时常量池进入到堆 
 在JDK1.8 hotspot移除了永久代用元空间(Metaspace)取而代之。
-![](http://pztpuk0kp.bkt.clouddn.com/jvm5.png)
+![](http://dsvip1.vip/jvm5.png)
 
 ###### （5）java堆
 
